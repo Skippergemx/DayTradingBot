@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0a0c10;
+  --navy-light: #161b22;
+  --cyan-neon: #22d3ee;
+  --signal-pink: #ff00c1;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  margin: 0;
+  background-color: var(--navy);
+  color: #e6edf3;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .font-outfit {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Zen Background */
+.zen-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #1a1f2e 0%, #0a0c10 100%);
+  z-index: -1;
+}
+
+.zen-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.03) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* Glassmorphism Components */
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--cyan-neon);
+}
+
+/* ── INSTITUTIONAL PANEL + KPI SYSTEM ─────────────────────────────────────────
+   One card language for every tab. Declared inside @layer components so Tailwind
+   utilities (background and border tints) still win — a card can opt into a tint
+   without the surface overriding it. This is the single source of truth for card
+   radius, border and title hierarchy. */
+@layer components {
+  /* Canonical card surface (replaces "glass-panel rounded-sm border-white/10 bg-white/[0.02]") */
+  .panel {
+    background: rgba(255, 255, 255, 0.022);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 4px;
+  }
+  /* Card title — consistent size/weight/tracking/color across every tab */
+  .panel-ti {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.42);
+  }
+  /* Sub-metric tile nested inside a card */
+  .tile {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+  }
+
+  /* Command-bar KPI rail — terminal-style segmented readouts */
+  .kpi {
+    flex: 1 1 0;
+    min-width: 124px;
+    padding: 6px 12px;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .kpi:last-child { border-right: 0; }
+  .kpi-l {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+    white-space: nowrap;
+  }
+  .kpi-v {
+    font-size: 15px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.15;
+    color: #ffffff;
+    white-space: nowrap;
+  }
+  .kpi-s {
+    font-size: 10px;
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.42);
+    white-space: nowrap;
+  }
+}
+
+/* Custom Scrollbar Styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.2);
+}
+
+/* Invisible Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.glow-pink {
+  text-shadow: 0 0 20px rgba(255, 0, 193, 0.4);
+}
+
+/* Typography Utilities */
+.tracking-ultra {
+  letter-spacing: 0.3em;
+}
+
+/* App shell height: dvh keeps the terminal clear of the mobile browser toolbars.
+   100vh measures the *large* viewport on iOS/Android, so the shell's bottom
+   strip hides behind the URL bar — and body overflow:hidden leaves no way to
+   scroll it into view. dvh tracks the visible viewport; the 100vh fallback
+   covers browsers without dvh support. */
+.app-shell { height: 100vh; }
+@supports (height: 100dvh) {
+  .app-shell { height: 100dvh; }
+}

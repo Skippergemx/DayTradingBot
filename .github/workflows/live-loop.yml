@@ -1,0 +1,56 @@
+# ── LIVE LOOP — free 24/7 paper trader on GitHub Actions ──────────────────────
+# Runs scripts/live-loop.mjs on a schedule and commits the state file back.
+# PAPER ONLY — no secrets, no API keys, no orders. Nothing to configure.
+#
+# COST: free and unlimited for PUBLIC repos. On a PRIVATE repo each run bills a
+# minimum of 1 CI-minute (~288 runs/day ≈ 8.6k min/month), which exceeds the
+# 2,000 free minutes — keep this repo public, or move the loop to a VM instead.
+#
+# GitHub's schedule is best-effort: it can be delayed under load, the minimum
+# interval is 5 minutes, and scheduled workflows auto-disable after 60 days with
+# no repo activity (commit something, or re-enable from the Actions tab).
+name: live-loop
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # every 5 minutes (the minimum GitHub allows)
+  workflow_dispatch:        # manual "Run workflow" button for a one-off tick
+
+# Never let two ticks overlap — a delayed run would otherwise race the state file.
+concurrency:
+  group: live-loop
+  cancel-in-progress: false
+
+permissions:
+  contents: write           # required to push the updated state file back
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # One tick. Network blips must not lose the state commit below, so this
+      # step is allowed to fail: the loop only writes state on a full success,
+      # so a failed tick simply commits nothing.
+      - name: Tick
+        continue-on-error: true
+        run: node scripts/live-loop.mjs --state state/live-state.json
+
+      - name: Commit state
+        run: |
+          git config user.name  "live-loop[bot]"
+          git config user.email "live-loop@users.noreply.github.com"
+          mkdir -p state
+          git add -A -- state
+          if git diff --cached --quiet; then
+            echo "no state change"
+          else
+            git commit -m "chore(live-loop): state @ $(date -u +%FT%TZ) [skip ci]"
+            git push
+          fi

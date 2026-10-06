@@ -1,0 +1,3 @@
+# Live-loop state directory.
+# live-state.json (written by scripts/live-loop.mjs) is committed back by the
+# live-loop workflow so the paper book persists across ephemeral CI runs.

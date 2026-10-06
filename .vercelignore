@@ -1,0 +1,6 @@
+# Backtest harness artifacts — dev-only, never part of the deployed app
+.backtest-cache/
+backtest-reports/
+
+# Local deployment helper scripts
+.vercel-tmp/
