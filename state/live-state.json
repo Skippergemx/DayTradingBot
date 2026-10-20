@@ -1,7 +1,7 @@
 {
   "version": 1,
   "createdAt": 1791272280666,
-  "updatedAt": 1792456623137,
+  "updatedAt": 1792473619633,
   "balance": 9963.62,
   "notional": 1000,
   "open": [],
@@ -120,5 +120,5 @@
     "dayUtc": "2026-10-20",
     "startEquity": 9963.62
   },
-  "lastBtc": 81727.21
+  "lastBtc": null
 }
