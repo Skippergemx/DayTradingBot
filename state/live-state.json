@@ -1,7 +1,7 @@
 {
   "version": 1,
   "createdAt": 1791272280666,
-  "updatedAt": 1792561343663,
+  "updatedAt": 1792579073531,
   "balance": 9963.62,
   "notional": 1000,
   "open": [
@@ -24,7 +24,51 @@
       },
       "targetSource": "NR7_MEASURED_4R",
       "openedAt": 1792558920000,
-      "lastBarTs": 1792558860000,
+      "lastBarTs": 1792578960000,
+      "maxHoldMs": 43200000
+    },
+    {
+      "id": "DAY_BREAKOUT:OP-USDT:NR7:1792571400000:1792572540000",
+      "symbol": "OP-USDT",
+      "strategy": "DAY_BREAKOUT",
+      "structId": "OP-USDT:NR7:1792571400000",
+      "entry": 0.13242648,
+      "stopLoss": 0.13108343,
+      "target": 0.13779868,
+      "stop": 0.13108343,
+      "risk0": 0.0013430500000000123,
+      "peak": 0.13242648,
+      "armed": false,
+      "size": 1000,
+      "entryFee": 1,
+      "trail": {
+        "mode": "NONE"
+      },
+      "targetSource": "NR7_MEASURED_4R",
+      "openedAt": 1792572600000,
+      "lastBarTs": 1792572540000,
+      "maxHoldMs": 43200000
+    },
+    {
+      "id": "DAY_BREAKOUT:ADA-USDT:NR7:1792574100000:1792575180000",
+      "symbol": "ADA-USDT",
+      "strategy": "DAY_BREAKOUT",
+      "structId": "ADA-USDT:NR7:1792574100000",
+      "entry": 0.22614522,
+      "stopLoss": 0.22429555,
+      "target": 0.23354389,
+      "stop": 0.22429555,
+      "risk0": 0.0018496699999999977,
+      "peak": 0.22614522,
+      "armed": false,
+      "size": 1000,
+      "entryFee": 1,
+      "trail": {
+        "mode": "NONE"
+      },
+      "targetSource": "NR7_MEASURED_4R",
+      "openedAt": 1792575240000,
+      "lastBarTs": 1792575180000,
       "maxHoldMs": 43200000
     }
   ],
@@ -85,28 +129,30 @@
     "SOL-USDT:NR7:1791298800000": 1791300284003,
     "ADA-USDT:RSI2:1791296100000": 1791300284003,
     "DOT-USDT:RSI2:1791291600000": 1791300284003,
-    "GALA-USDT:NR7:1792557900000": 1792561339357
+    "GALA-USDT:NR7:1792557900000": 1792561339357,
+    "OP-USDT:NR7:1792571400000": 1792579070207,
+    "ADA-USDT:NR7:1792574100000": 1792579070207
   },
   "cooldowns": {},
   "scan": {
-    "BTC-USDT": 1792561260000,
-    "ETH-USDT": 1792561260000,
-    "SOL-USDT": 1792561260000,
-    "AVAX-USDT": 1792561260000,
-    "NEAR-USDT": 1792561260000,
-    "LINK-USDT": 1792561260000,
-    "ARB-USDT": 1792561260000,
-    "OP-USDT": 1792561260000,
-    "TIA-USDT": 1792561260000,
-    "SUI-USDT": 1792561260000,
-    "JUP-USDT": 1792561260000,
-    "SEI-USDT": 1792561260000,
-    "STX-USDT": 1792561260000,
-    "FIL-USDT": 1792561260000,
-    "INJ-USDT": 1792561260000,
-    "TRX-USDT": 1792561260000,
-    "XRP-USDT": 1792561260000,
-    "ADA-USDT": 1792561260000,
+    "BTC-USDT": 1792578960000,
+    "ETH-USDT": 1792578960000,
+    "SOL-USDT": 1792578960000,
+    "AVAX-USDT": 1792578960000,
+    "NEAR-USDT": 1792578960000,
+    "LINK-USDT": 1792578960000,
+    "ARB-USDT": 1792578960000,
+    "OP-USDT": 1792578960000,
+    "TIA-USDT": 1792578960000,
+    "SUI-USDT": 1792578960000,
+    "JUP-USDT": 1792578960000,
+    "SEI-USDT": 1792578960000,
+    "STX-USDT": 1792578960000,
+    "FIL-USDT": 1792578960000,
+    "INJ-USDT": 1792578960000,
+    "TRX-USDT": 1792578960000,
+    "XRP-USDT": 1792578960000,
+    "ADA-USDT": 1792575180000,
     "DOT-USDT": 1792561260000,
     "ATOM-USDT": 1792561260000,
     "ALGO-USDT": 1792561260000,
@@ -144,5 +190,5 @@
     "dayUtc": "2026-10-21",
     "startEquity": 9963.62
   },
-  "lastBtc": 82731.61
+  "lastBtc": 83329.98
 }
